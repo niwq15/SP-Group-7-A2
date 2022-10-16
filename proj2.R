@@ -70,21 +70,34 @@ Strategy2 <- function(n,k,cards_num) {
 
 ## Strategy 3 
 
-Strategy3 <- function(n,k,cards_num) {
-  #create an empty vector to store card numbers that have been read
-  cards_picked <- rep(0, n) # the prisoner can read at most n cards
-  for (b in 1:n) {
-    cards_picked[b] <- sample(cards_num,1)#open each box at random
-    if (cards_picked[b] == k) {#if the prisoner k has found his number
-      return(TRUE)
-      break
-    } 
-  }
-  #check whether he finds his number in the final step
-  if (cards_picked[n] != k) { #if the final number is not his number
-    return(FALSE)
-  } else {#if the final number is equal to his number
+#Strategy3 <- function(n,k,cards_num) {
+#  #create an empty vector to store card numbers that have been read
+#  cards_picked <- rep(0, n) # the prisoner can read at most n cards
+#  for (b in 1:n) {
+#    cards_picked[b] <- sample(cards_num,1)#open each box at random
+#    if (cards_picked[b] == k) {#if the prisoner k has found his number
+#      return(TRUE)
+#      break
+#    } 
+#  }
+#  #check whether he finds his number in the final step
+#  if (cards_picked[n] != k) { #if the final number is not his number
+#    return(FALSE)
+#  } else {#if the final number is equal to his number
+#    return(TRUE)
+#  }
+#}
+
+Strategy3 <- function(k){
+  prisoner_numbers = c(1:2*n)
+  select_box = sample(prisoner_numbers,n)
+  #cat("Prisoner ", x, " selected boxes ", select_box, " which contained cards ", boxes[select_box])
+  if (k %in% boxes[select_box]){
     return(TRUE)
+    #cat("The prisoner found their card in box ", match(x,boxes[select_box]))
+  } else {
+    return(FALSE)
+    #print("The prisoner did not find their card.")
   }
 }
 
