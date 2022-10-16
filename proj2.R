@@ -112,4 +112,20 @@ pall <- function (n,k,strategy,nreps) {
   return(sum(num_successes)/nreps)
 }
 
+## Create a function Pall - version with 'nreps'
+
+Pall <- function(n,strategy,nreps) {
+  #create a vector to record the result of each simulation with default values of 1s
+  num_success <- rep(1,nreps)
+  for (i in 1:nreps) {#for each simulation
+    #generate a random order of card numbers
+    cards_num <- sample(1:(2*n), 2*n, replace=FALSE)
+    #use the strategies to calculate whether each prisoner can find their correct number within n times
+    for (k in 1:(2*n)) {
+      num_success[i] <- num_success[i] * strategy(n,k,cards_num)
+    }
+  }
+  return(sum(num_success)/nreps)
+}
+
 
