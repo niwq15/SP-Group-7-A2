@@ -118,17 +118,16 @@ Pone <- function(n,k,strategy,nreps) {
 Pone(10,1,Strategy1,1000)
 
 
-pall <- function ( n, strategy ,nreps ) {
+pall <- function (n,k,strategy,nreps) {
   boxes <- sample(1 : (2*n), 2*n , replace=FALSE)
-    #set initial probability factor to 1
-  no_success <- rep(0,2*n)
-  
-  #loop through each prisoner, applying pone each time 
+    #num_successes stores the success/failure of all the prisoners in each simulation
+  num_successes <- rep(0,nreps)
+  #In each simulation, loop through each prisoner, applying the strategy each time 
   for (k in 1:(2*n)) {
-    no_success(i) <- success(i)*strategy(k)
+    num_successes(i) <- num_successes(i)*strategy(n,k,cards_num)
   }
-  #output the total probability 
-  return(sum(no_successes)/nreps)
+  #output the total frequentist probability 
+  return(sum(num_successes)/nreps)
 }
 
 
