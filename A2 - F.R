@@ -71,18 +71,21 @@ pone <- function (n, k, strategy, nreps) {
 pone(100,50,Strat_2,1000)
 
 
-pall <- function ( n, strategy ,nreps ) {
-  boxes <- sample(1 : (2*n), 2*n , replace=FALSE)
-    #set initial probability factor to 1
-  no_success <- rep(0,2*n)
-  
-  #loop through each prisoner, applying pone each time 
-  for (k in 1:(2*n)) {
-    no_success(i) <- success(i)*strategy(k)
-  }
-  #output the total probability 
-  return(sum(no_successes)/nreps)
-}
 
+#This code is coherent with the master file - not this file (parameters are different) 
+
+#output probability of total prisoner success
+pall <- function (n,k,strategy,nreps) {
+  #simulate new boxes and cards configuration
+  boxes <- sample(1 : (2*n), 2*n , replace=FALSE)
+   #num_successes stores the success/failure of all the prisoners in each simulation
+  num_successes <- rep(0,nreps)
+  #In each simulation, loop through each prisoner, applying the strategy each time 
+  for (k in 1:(2*n)) {
+    num_successes(i) <- num_successes(i)*strategy(n,k,cards_num)
+  }
+  #output the total frequentist probability 
+  return(sum(num_successes)/nreps)
+}
 
 
