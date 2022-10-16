@@ -6,10 +6,10 @@ strat3 <- function(x){
   select_box = sample(prisoner_numbers,n)
   #cat("Prisoner ", x, " selected boxes ", select_box, " which contained cards ", boxes[select_box])
   if (x %in% boxes[select_box]){
-    return(1)
+    return(TRUE)
     #cat("The prisoner found their card in box ", match(x,boxes[select_box]))
   } else {
-    return(0)
+    return(FALSE)
     #print("The prisoner did not find their card.")
   }
 }
@@ -29,10 +29,10 @@ Pall <- function(n,strategy,nreps){
   for (i in 1:n) {
     survived[i] <- strategy(prisoner_numbers[i])
   }
-  if (0 %in% survived) {
-    allsurvived[i] <- 0
+  if (FALSE %in% survived) {
+    allsurvived[i] <- FALSE
   } else {
-    allsurvived[i] <- 1
+    allsurvived[i] <- TRUE
   }
   }
   return(which(allsurvived == 1)/nreps)
