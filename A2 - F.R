@@ -50,5 +50,39 @@ Strat_2(5)
 
 
 
+#finds the frequentist probability of a single prisoner finding his card amoungst the boxes
+pone <- function (n, k, strategy, nreps) {
+  # store the number of successful attempts 
+  no_successes <- rep ( 0, nreps )
+  
+  for (i in 1:nreps) {
+    #resimulate box set up
+    boxes <- sample(1 : (2*n), 2*n , replace=FALSE)
+    
+    #stores a one/True for every successful attempt and zero/False for failure
+    no_successes[i] <- strategy(k)
+  }
+  #function returns frequentist probability of success  
+  return(sum(no_successes)/nreps)
+}
+
+
+
+pone(100,50,Strat_2,1000)
+
+
+pall <- function ( n, strategy ,nreps ) {
+  boxes <- sample(1 : (2*n), 2*n , replace=FALSE)
+    #set initial probability factor to 1
+  no_success <- rep(0,2*n)
+  
+  #loop through each prisoner, applying pone each time 
+  for (k in 1:(2*n)) {
+    no_success(i) <- success(i)*strategy(k)
+  }
+  #output the total probability 
+  return(sum(no_successes)/nreps)
+}
+
 
 
