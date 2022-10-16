@@ -71,6 +71,18 @@ pone <- function (n, k, strategy, nreps) {
 pone(100,50,Strat_2,1000)
 
 
-#pall complex :(
+pall <- function ( n, strategy ,nreps ) {
+  boxes <- sample(1 : (2*n), 2*n , replace=FALSE)
+    #set initial probability factor to 1
+  no_success <- rep(0,2*n)
+  
+  #loop through each prisoner, applying pone each time 
+  for (k in 1:(2*n)) {
+    no_success(i) <- success(i)*strategy(k)
+  }
+  #output the total probability 
+  return(sum(no_successes)/nreps)
+}
+
 
 
