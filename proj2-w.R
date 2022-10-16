@@ -30,6 +30,7 @@ Strategy1 <- function(n,k,cards_num) {
   for (b in 2:n) {
     if (cards_picked[b-1] == k) {#if the prisoner k has found his number
       return(TRUE)
+      break
     } else {#otherwise prisoner will open the box with number k
       cards_picked[b] <- cards_num[cards_picked[b-1]]
     }
@@ -53,6 +54,7 @@ Strategy2 <- function(n,k,cards_num) {
   for (b in 2:n) {
     if (cards_picked[b-1] == k) {#if the prisoner k has found his number
       return(TRUE)
+      break
     } else {#otherwise prisoner will open the box with number k
       cards_picked[b] <- cards_num[cards_picked[b-1]]
     }
@@ -75,6 +77,7 @@ Strategy3 <- function(n,k,cards_num) {
     cards_picked[b] <- sample(cards_num,1)#open each box at random
     if (cards_picked[b] == k) {#if the prisoner k has found his number
       return(TRUE)
+      break
     } 
   }
   #check whether he finds his number in the final step
