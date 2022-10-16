@@ -83,7 +83,7 @@ pone <- function (n, k, strategy, nreps) {
  # return(prob_success)
 #}
 pone(100,50,Strat_2,1000)
-pall(10, Strat_2, 100)
+#pall(10, Strat_2, 100)
 
 
 
