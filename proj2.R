@@ -68,36 +68,18 @@ Strategy2 <- function(n,k,cards_num) {
 }
 
 
-## Strategy 3 
+## Strategy 3, selecting n boxes randomly to open. We use sample to get these numbers.
 
-#Strategy3 <- function(n,k,cards_num) {
-#  #create an empty vector to store card numbers that have been read
-#  cards_picked <- rep(0, n) # the prisoner can read at most n cards
-#  for (b in 1:n) {
-#    cards_picked[b] <- sample(cards_num,1)#open each box at random
-#    if (cards_picked[b] == k) {#if the prisoner k has found his number
-#      return(TRUE)
-#      break
-#    } 
-#  }
-#  #check whether he finds his number in the final step
-#  if (cards_picked[n] != k) { #if the final number is not his number
-#    return(FALSE)
-#  } else {#if the final number is equal to his number
-#    return(TRUE)
-#  }
-#}
-
-Strategy3 <- function(n,k,cards_num){
-  cards_picked <- sample(cards_num,n)
-  if (k %in% cards_num[cards_picked]){
-    return(TRUE)
-    #cat("The prisoner found their card in box ", match(x,boxes[select_box]))
-  } else {
+Strategy3 <- function(n,k,cards_num){ # Begin function, using n,k,cards_num parameters to work with Pone and Pall
+  cards_picked <- sample(cards_num,n) # Randomly select n boxes from cards_num to open
+  if (k %in% cards_num[cards_picked]){ # Check if prisoner number is in any of the boxes selected
+    return(TRUE) 
+    #cat("The prisoner found their card in box ", match(x,boxes[select_box])) # Uncomment this if running Strategy3 standalone for a success message
+  } else { # If prisoner number not in any of the n boxes
     return(FALSE)
-    #print("The prisoner did not find their card.")
+    #print("The prisoner did not find their card.") # Uncomment this for a failure message.
   }
-}
+} # End function
 
 ## Write a function 'Pone' to estimate the probability of a prisoner successfully finding their number
 
