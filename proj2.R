@@ -67,6 +67,21 @@ Strategy2 <- function(n,k,cards_num) {
   }
 }
 
+## Strategy 3: version 2 - use similar methods as in Strategy 1 and 2
+
+Strategy3 <- function(n,k,cards_num) {
+#create an empty vector to store card numbers that have been read#  
+  cards_picked <- rep(0, n) # the prisoner can read at most n cards
+  for (b in 1:n) {
+    cards_picked[b] <- sample(cards_num,1)#open each box at random
+    if (cards_picked[b] == k) { #if the prisoner k has found his number
+      return(TRUE)
+      break
+    } 
+  }
+  #if the prisoner has not found his number at the n-th door
+  return(FALSE)
+}
 
 ## Strategy 3, selecting n boxes randomly to open. We use sample to get these numbers.
 
