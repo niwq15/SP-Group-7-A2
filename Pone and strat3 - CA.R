@@ -21,3 +21,19 @@ Pone <- function(n,k,strategy,nreps){
   }
   return(length(which(survived == 1))/nreps)
 }
+
+Pall <- function(n,strategy,nreps){
+  allsurvived = c(rep(0,nreps))
+  for (i in 1:nreps){
+  survived = c(rep(0,n))
+  for (i in 1:n) {
+    survived[i] <- strategy(prisoner_numbers[i])
+  }
+  if (0 %in% survived) {
+    allsurvived[i] <- 0
+  } else {
+    allsurvived[i] <- 1
+  }
+  }
+  return(which(allsurvived == 1)/nreps)
+}
