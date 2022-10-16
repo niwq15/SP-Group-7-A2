@@ -92,7 +92,7 @@ Strategy3 <- function(k){
   prisoner_numbers = c(1:2*n)
   select_box = sample(prisoner_numbers,n)
   #cat("Prisoner ", x, " selected boxes ", select_box, " which contained cards ", boxes[select_box])
-  if (k %in% boxes[select_box]){
+  if (k %in% cards_num[select_box]){
     return(TRUE)
     #cat("The prisoner found their card in box ", match(x,boxes[select_box]))
   } else {
