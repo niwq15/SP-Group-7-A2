@@ -177,6 +177,11 @@ dloop <- function(n,nreps) {
   return(colSums(loop_len)/nreps)
 }
 
+## Show an example to use 'dloop' to estimate the probabilities for n = 50
 
+loop50 <- dloop(50,10000)
+# The probability that the loop length is no more than 50
+sum(loop50[1:50])
 
-
+# Visualize the probabilities
+hist(loop50)
