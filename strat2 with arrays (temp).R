@@ -38,14 +38,14 @@ for (k in 1:nreps){ # for each simulation
 # create an array of the successes
 success_array <- array(successes,dim = c(2*n,nreps))
 
-# likelihood of each prisoner escaping individually
+# likelihood of each prisoner escaping individually (Pone)
 length(which(successes == 1))/(2*n*nreps) 
 
 # create an array of the product of each simulation,
 # if any prisoner did not escape then not everyone escaped.
 allescape <- apply(success_array, MARGIN = 2, prod) 
 
-# check the probability everyone escapes is about 0.31
+# check the probability everyone escapes is about 0
 length(which(allescape == 1))/nreps 
 
 et <- Sys.time() # end timer

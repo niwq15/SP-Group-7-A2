@@ -38,7 +38,7 @@ for (k in 1:nreps){ # for each simulation
 # create an array of the successes
 success_array <- array(successes,dim = c(2*n,nreps))
 
-# likelihood of each prisoner escaping individually
+# likelihood of each prisoner escaping individually (Pone)
 length(which(successes == 1))/(2*n*nreps) 
 
 # create an array of the product of each simulation,
