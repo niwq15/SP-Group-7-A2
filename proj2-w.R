@@ -30,7 +30,7 @@ Strategy1 <- function(n,k,cards_num) {
   for (b in 2:n) {
     if (cards_picked[b-1] == k) {#if the prisoner k has found his number
       return(TRUE)
-      break
+      break #break the for loop
     } else {#otherwise prisoner will open the box with number k
       cards_picked[b] <- cards_num[cards_picked[b-1]]
     }
@@ -71,21 +71,17 @@ Strategy2 <- function(n,k,cards_num) {
 ## Strategy 3 
 
 Strategy3 <- function(n,k,cards_num) {
-  #create an empty vector to store card numbers that have been read
+  #create an empty vector to store card numbers that have been read#  
   cards_picked <- rep(0, n) # the prisoner can read at most n cards
   for (b in 1:n) {
     cards_picked[b] <- sample(cards_num,1)#open each box at random
-    if (cards_picked[b] == k) {#if the prisoner k has found his number
+    if (cards_picked[b] == k) { #if the prisoner k has found his number
       return(TRUE)
       break
     } 
   }
-  #check whether he finds his number in the final step
-  if (cards_picked[n] != k) { #if the final number is not his number
-    return(FALSE)
-  } else {#if the final number is equal to his number
-    return(TRUE)
-  }
+  #if the prisoner has not found his number at the n-th door
+  return(FALSE)
 }
 
 ## Write a function 'Pone' to estimate the probability of a prisoner successfully finding their number
@@ -108,22 +104,78 @@ Pone(10,1,Strategy1,1000)
 
 ## Write a function Pall to estimate the probability of all prisoners finding their numbers
 # which is the product of the probability of each prisoner finding their numbers
+
 Pall <- function(n,strategy,nreps) {
-  #create a number to show the probability
-  prob <- 1 #default value
-  for (k in 1:(2*n)) {
-    #use the Pone function to calculate the probability of the prisoner k finding their numbers
-    prob <- prob*Pone(n,k,strategy,nreps)
+  num_success <- rep(1,nreps)
+  for (i in 1:nreps) {
+    cards_num <- sample(1:(2*n), 2*n, replace=FALSE)
+    #success = 1 # default value
+    for (k in 1:(2*n)) {
+      num_success[i] <- num_success[i] * strategy(n,k,cards_num)
+    }
   }
-  return(prob)
+  return(sum(num_success)/nreps)
 }
 
-Pall(5,Strategy1,100)
-Pall(5,Strategy2,100)
-Pall(5,Strategy3,100)
+
+## When n = 5, the estimated individual success probabilities for strategies
+Pone(5,1,Strategy1,10000) # for Strategy 1
+Pone(5,1,Strategy2,10000) # for Strategy 2
+Pone(5,1,Strategy3,10000) # for Strategy 3
+## The joint success probabilities are 
+Pall(5,Strategy1,10000) # for Strategy 1
+Pall(5,Strategy2,10000) # for Strategy 2
+Pall(5,Strategy3,10000) # for Strategy 3
+## When n = 50, the estimated individual success probabilities
+Pone(50,1,Strategy1,10000) # for Strategy 1
+Pone(50,1,Strategy2,10000) # for Strategy 2
+Pone(50,1,Strategy3,10000) # for Strategy 3
+## The joint success probabilities are 
+Pall(50,Strategy1,10000) # for Strategy 1
+Pall(50,Strategy2,10000) # for Strategy 2
+Pall(50,Strategy3,10000) # for Strategy 3
+
+## Comments
+# Strategy 1 has a quite high success probability that all prisoners find their numbers, which is 0.324
+# Strategy 2 and 3 have
 
 
 
+## Write a function dloop
+
+dloop <- function(n,nreps) {
+  # create an empty array to store the number of occurrences of loops with lengths from 1 to 2n for each simulation
+  # default value is 1 as ...
+  loop_len <- array(rep(1,nreps*(2*n)), dim=c(nreps,2*n)) #each row referring to one simulation
+  prob <- rep(0,2*n) #create an empty vector to store the targeted probabilities
+  for (i in 1:nreps) {#for each simulation
+    cards_num <- sample(1:(2*n), 2*n, replace=FALSE)
+    cards_picked <- rep(0,2*n)
+    #calculate loop lengths for each prisoner's number
+    for (k in 1:(2*n)) {
+      cards_picked[1] <- cards_num[k]
+      for (b in 2:(2*n)) {
+        if (cards_picked[b-1] ==k) {
+          loop_len[i,k] <- loop_len[i,k]
+          break #stop the loop if the loop lenth has been found
+        } else {
+          cards_picked[b] <- cards_num[cards_picked[b-1]]
+          loop_len[i,k] <- loop_len[i,k] + 1
+        }
+      }
+    }
+    #now we obtain a row which specifies the loop length for each k in 1:2n
+    #use tabulate function to count the occurrences of each loop length which is between 1 and 2n
+    len <- append(loop_len[i,], 2*n) #add a '2*n' to keep the length of the vector when using tabulate
+    len <- tabulate(len)
+    loop_len[i,] <- replace(len, length(len), len[length(len)]-1) #eliminate the impact of the added '2*n'
+    #convert the values to be binary
+    loop_len[i,] <- as.numeric(loop_len[i,] >= 1) # give 1s to those loop lengths which occur at least once
+  }#end for each simulation
+  #notice that each column of 'loop_len' shows whether the loop length appearing in each simulation
+  #calculate the probability of each loop length
+  return(colSums(loop_len)/nreps)
+}
 
 
 
