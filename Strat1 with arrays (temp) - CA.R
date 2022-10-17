@@ -8,10 +8,16 @@ prisoner_numbers <- c(1:100) # create vector of prisoner numbers
 ## simulaton initialisms
 s1boxes <- array(rep(0,nreps*2*n*n), dim = c(2*n,n,nreps)) # create an array of the cards pulled from the boxes. Each matrix is a simulation
 successes <- array(rep(0,2*n*nreps), dim = c(2*n,nreps)) # create array tracking tracking success of a prisoner escaping in a given simulation
+# note the indices are:
+# the rows, i, for each prisoner
+# the columns, j, for each choice of box
+# the matrices, k, for each simulation
+
 
 ## simulation
 for (k in 1:nreps){ # for each simulation
   box_contains <- sample(prisoner_numbers) # randomise cards in boxes
+  #strat1
   for (i in prisoner_numbers){ # for each prisoner
     s1boxes[i,1,k] <- box_contains[i] # intialise by choosing the box with their number on it
     for (j in 1:(n-1)){  # for every other choice
