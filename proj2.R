@@ -68,7 +68,7 @@ Strategy2 <- function(n,k,cards_num) {
 }
 
 ## Strategy 3: version 2 - use similar methods as in Strategy 1 and 2
-#### need to check which one runs faster
+#### need to check which one runs faster (this method runs significantly slower and STILL outputs the incorrect value on Pone)
 Strategy3 <- function(n,k,cards_num) {
 #create an empty vector to store card numbers that have been read#  
   cards_picked <- rep(0, n) # the prisoner can read at most n cards
