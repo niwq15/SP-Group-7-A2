@@ -7,6 +7,21 @@
 
 #### Overview / summary
 
+# Consider a case of 2n prisoners, each with a unique prisoner number ranging from 1 to 2n. 
+# There is a room with 2n boxes, each with a unique number between 1 and 2n painted on its lid. 
+# In each box, there is one card with a unique number between 1 and 2n. 
+# The prisoners have n chances to open boxes to find their number. 
+# Communication is allowable among those prisoners and the room will be returned 
+# to its original state after each prisoner’s go. 
+
+# Firstly, we will show 3 strategies for the prisoners, create a Pone function to estimate 
+# the probability of a single prisoner successfully finding their number, use a Pall function to 
+# calculate the probability of all the prisoners finding their numbers. 
+# Based on the results of the individual and joint success probabilities using different strategies, 
+# we will give some comments about which strategy has the highest success probabilities for 
+# both individuals and all. 
+
+# The following code uses stochastic simulation to explore the prisoner problem. 
 
 ## There are 2n cards each printed with a unique number from 1 to 2n.
 ## The 2n cards are randomly placed one in each of 2n boxes
