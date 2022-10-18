@@ -47,6 +47,7 @@ dloop <- function(n, nreps) {
   
   #probability vector for the occurrence of each type of loop length 
   prob_vec_y <- tabulate(each_loop_lengths)/nreps
+  cat("your probability vector for producing at least one loop of length i: \n", prob_vec_y)
   return(prob_vec_y)
 }#end function
 
@@ -54,12 +55,10 @@ dloop <- function(n, nreps) {
 #timing the function 
 start_time = Sys.time()
 VAR_1 <- dloop(50, 10000)
+#dloop(50, 10000)
 end_time = Sys.time()
 cat(time_taken = end_time - start_time)
 
-cat("your probability vector for producing at least one loop of length i: \n", VAR_1)
-
-#print(sum(VAR_1))
 
 
 
