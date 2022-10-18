@@ -28,6 +28,9 @@ dloop <- function(n, nreps) {
   prob_vec_y <- tabulate(all_loop_lengths)/nreps
   x_axis <- 1:length(prob_vec_y)
   plot(x_axis, prob_vec_y, xlab = "max loop length", ylab = "probability")
+  prob_less_n_loop = sum(prob_vec_y[1:n])
+  cat("\n",   prob_less_n_loop, "\n")
+
   return(prob_vec_y)
 }#end function
 
