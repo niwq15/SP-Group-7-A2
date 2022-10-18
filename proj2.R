@@ -118,33 +118,33 @@ Pall <- function(n,strategy,nreps) {
 
 ###pone takes args: n,k,strategy,nreps
 ###individual probs
-pone(5,5,Strategy1,10000)
-pone(50,50,Strategy1,10000)
+Pone(5,5,Strategy1,10000)
+Pone(50,50,Strategy1,10000)
 #one prisoner & strategy 1: prob success ~ 50%
 
-pone(5,5,Strategy2,10000)
-pone(500,500,Strategy2,10000)
+Pone(5,5,Strategy2,10000)
+Pone(500,500,Strategy2,10000)
 #one prisoner & strategy 2: prob success ~40% (n=5) ~37% (n>50)
 
-pone(5,5,Strategy3,10000)
-pone(50,50,Strategy3,10000)
+Pone(5,5,Strategy3,10000)
+Pone(50,50,Strategy3,10000)
 #one prisoner & strategy 3: prob success ~50% 
 
 
 #pall takes args: n,strategy,nreps
 #joint probs 
-pall(5,Strategy1,10000)
-pall(50,Strategy1,10000)
+Pall(5,Strategy1,10000)
+Pall(50,Strategy1,10000)
 #10 prisoners & strategy 1: prob success ~35%
 #100 prisoners & strategy 1: prob success ~30%
 
-pall(5,Strategy2,10000)
-pall(50,Strategy2,10000)
+Pall(5,Strategy2,10000)
+Pall(50,Strategy2,10000)
 #10 prisoners & strategy 2: prob success ~0.01%
 #100 prisoners & strategy 2: prob success ~0% (smaller than precision)
 
-pall(5,Strategy3,10000)
-pall(50,Strategy3,10000)
+Pall(5,Strategy3,10000)
+Pall(50,Strategy3,10000)
 #10 prisoners & strategy 3: prob success ~1%
 #100 prisoners & strategy 3: prob success ~0% (smaller than precision)
 
