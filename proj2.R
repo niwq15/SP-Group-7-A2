@@ -116,13 +116,12 @@ Pone <- function(n,k,strategy,nreps) {
 Pall <- function(n,strategy,nreps) {
   #create a vector to record the result of each simulation with default values of 1s
   num_success <- rep(1,nreps)
-  st <- Sys.time()
   for (i in 1:nreps) {#for each simulation
     #generate a random order of card numbers
     cards_num <- sample(1:(2*n), 2*n, replace=FALSE)
     #use the strategies to calculate whether each prisoner can find their correct number within n times
     for (k in 1:(2*n)) {
-      result <- strategy(n,k,cards_num) # save result
+      result <- strategy(n,k,cards_num) # save the result of strategy for the k-th prisoner
       num_success[i] <- num_success[i] * result # if result is 1 keep 1 in the vector. If 0 change to 0.
       if (result == 0){ # stop if any prisoner does not escape
         break
