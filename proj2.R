@@ -45,7 +45,7 @@ Strategy1 <- function(n,k,cards_num) {
   for (b in 2:n) {
     if (cards_picked[b-1] == k) {#if the prisoner k has found his number
       return(TRUE)
-      break
+      break#stop here and the prisoner will not open other boxes
     } else {#otherwise prisoner will open the box with number k
       cards_picked[b] <- cards_num[cards_picked[b-1]]
     }
@@ -69,7 +69,7 @@ Strategy2 <- function(n,k,cards_num) {
   for (b in 2:n) {
     if (cards_picked[b-1] == k) {#if the prisoner k has found his number
       return(TRUE)
-      break
+      break#stop here and the prisoner will not open other boxes
     } else {#otherwise prisoner will open the box with number k
       cards_picked[b] <- cards_num[cards_picked[b-1]]
     }
