@@ -12,6 +12,8 @@
 # Wenqi - Strategy1, Strategy2, Strategy3, Pone, Pall, dloop 
 # Fatima - Strategy2, Pone, Pall, dloop 
 
+# each of us should add more here. we can say what we have done, involving different versions of functions above
+
 # Other Tasks: (correct your own)
 # Cameron - optimising stuff and array stuff
 # Wenqi - Q3 - Q6 stuff 
