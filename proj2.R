@@ -1,4 +1,3 @@
-st <- Sys.time()
 #### Team Members
 
 #### address of github repo
@@ -229,5 +228,3 @@ dloop <- function(n, nreps) {
   return(prob_vec_y)
 }#end function
 VAR_1 <- dloop(50, 10000)
-et <- Sys.time()
-et - st
