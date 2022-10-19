@@ -1,75 +1,108 @@
-#### Team Members
+#### Team Members:
+# Fatima Kasenally (S2443602); Wenqi Ni (s1792412); Cameron Allan (S1748084)
 
-#### address of github repo
+#### address of github repo:
+#https://github.com/niwq15/SP-Group-7-A2
 
 
 #### Contributions
 
+# Functions we each made versions of:
+# Cameron - Strategy3, Pone, 
+# Wenqi - Strategy1, Strategy2, Strategy3, Pone, Pall, dloop 
+# Fatima - Strategy2, Pone, Pall, dloop 
+
+# Other Tasks: (correct your own)
+# Cameron - optimising stuff and array stuff
+# Wenqi - Q3 - Q6 stuff 
+# Fatima - Q3 - Q6 stuff 
+
+
+
+
 #### Overview / summary
+# This file holds the self-contained code to simulate a generalised version of the famous '100 Prisoners Problem' 
+# The problem is defined as follows: 
+# Consider a prison containing 2n prisoners, each with a unique identification number ranging from 1 to 2n. 
+# The prison has a room with 2n boxes, each uniquely numbered from 1 to 2n and each containing a single card. 
+# These cards are each labelled with a unique number between 1 and 2n. 
+# Each prisoner is allowed to open n boxes to find the card with their number.
+# If all 2n prisoners successfully find their cards then they all go free. 
+# After their turn,the prisoners are not allowed to communicate any new information from the boxes 
+# to prisoners who have yet to take their turn.
+# The room is returned to its original state after each prisoner’s go. 
 
-# Consider a case of 2n prisoners, each with a unique prisoner number ranging from 1 to 2n. 
-# There is a room with 2n boxes, each with a unique number between 1 and 2n painted on its lid. 
-# In each box, there is one card with a unique number between 1 and 2n. 
-# The prisoners have n chances to open boxes to find their number. 
-# Communication is allowable among those prisoners and the room will be returned 
-# to its original state after each prisoner’s go. 
-
-# Firstly, we will show 3 strategies for the prisoners, create a Pone function to estimate 
-# the probability of a single prisoner successfully finding their number, use a Pall function to 
+# Firstly, we will show 3 strategies for the prisoners, then create a 'Pone' function to estimate 
+# the probability of a single prisoner successfully finding their number, then use a 'Pall' function to 
 # calculate the probability of all the prisoners finding their numbers. 
 # Based on the results of the individual and joint success probabilities using different strategies, 
 # we will give some comments about which strategy has the highest success probabilities for 
-# both individuals and all. 
+# both individuals and the collective. 
 
 # The following code uses stochastic simulation to explore the prisoner problem. 
 
 ## There are 2n cards each printed with a unique number from 1 to 2n.
 ## The 2n cards are randomly placed one in each of 2n boxes
 ## Use sample function to give a random order of card numbers
-#cards_num <- sample(1:(2*n), 2*n, replace=FALSE)
+## cards_num <- sample(1:(2*n), 2*n, replace=FALSE)
+## Therefore cards_num simulates 2n cards (element value) randomly placed in 2n boxed (element index)
+
+## Each function expressing the various strategies for opening boxes to find cards will require the same 
+## input parameters : n,k,cards_num. Where n parameterises the 2n number of boxes, prisoner and cards in our problem.
+## k is the prisoner's number in a given trial run and cards_num, as explained above, represents the boxes and 
+## cards places in them. As the boxes and cards comfiguration must remain the same between prisoner trials it cannot
+## be defined within the function and must be called on and externally defined. 
+## Uniform input parameters allows the implemented strategy to be variable in each simulation as each strategy 
+## function is interchangable. This is requires by functions 'Pone' and 'Pall'
 
 
-## Prisoner k uses Strategy 1 to find their number
+
+## Strategy 1:
 ## Each prisoner with their number 'p' starts at the p-th box whose number on the card is k
-## If k is not equal to p, then the prisoner goes to box number k and open it
+## If k is not equal to p, then the prisoner goes to box number k and opens it
 ## The process will be repeated until they have either found the card with number p or opened n boxes without finding it
 
-##problem: whether necessarily needs to put n /cards_num as inputs?
-
+## Prisoner k uses Strategy 1 to find their number
 Strategy1 <- function(n,k,cards_num) {
-  #create an empty vector to store card numbers that have been read
+  #create an empty vector to store card numbers as they are read
   cards_picked <- rep(0, n) # the prisoner can read at most n cards
-  cards_picked[1] <- cards_num[k] # start at the box with his number on it
-  #for each of the remaining steps, firstly check whether he has found its number
+  cards_picked[1] <- cards_num[k] # start at the box with his number (k) on it 
+  #for each of the remaining steps, first check if he has found his card number
   #if so, he will stop; if not, he will continue to read cards
   for (b in 2:n) {
     if (cards_picked[b-1] == k) {#if the prisoner k has found his number
-      return(TRUE)
-      break#stop here and the prisoner will not open other boxes
-    } else {#otherwise prisoner will open the box with number k
+      return(TRUE) #yes the prisoner has successfully found his card
+      break # stop here and the prisoner will not open other boxes
+    } else {#otherwise prisoner will open another box with the number of the last card
       cards_picked[b] <- cards_num[cards_picked[b-1]]
     }
   }
   #check whether he finds his number in the final step
   if (cards_picked[n] != k) { #if the final number is not his number
-    return(FALSE)
+    return(FALSE) #prisoner has failed to find his card
   } else {#if the final number is equal to his number
-    return(TRUE)
+    return(TRUE) #prisoner has successfully found his card
   }
 }
 
-## Strategy 2
 
+
+## Strategy 2:
+## This strategy follows an identicle procedure to strategy 1, save that the starting box is randombly selected
+## The prisoner uses the card number in each box to pick his next box to open.
+## The prisoner can open at most n boxes in order to find the card with their number on it
+
+## Prisoner k uses Strategy 2 to find their number card
 Strategy2 <- function(n,k,cards_num) {
   #create an empty vector to store card numbers that have been read
   cards_picked <- rep(0, n) # the prisoner can read at most n cards
   cards_picked[1] <- sample(cards_num,1)# start at a randomly selected box 
-  #for each of the remaining steps, firstly check whether he has found its number
+  #for each of the remaining steps, firstly check whether he has found him number card
   #if so, he will stop; if not, he will continue to read cards
   for (b in 2:n) {
     if (cards_picked[b-1] == k) {#if the prisoner k has found his number
       return(TRUE)
-      break#stop here and the prisoner will not open other boxes
+      break #stop here and the prisoner will not open other boxes
     } else {#otherwise prisoner will open the box with number k
       cards_picked[b] <- cards_num[cards_picked[b-1]]
     }
@@ -80,11 +113,15 @@ Strategy2 <- function(n,k,cards_num) {
   } else {#if the final number is equal to his number
     return(TRUE)
   }
-}
+} #The function reutrns TRUE/FALSE expressing that the prisoner has FOUND/FAILED TO FIND his card 
 
-## Strategy 3, selecting n boxes randomly to open. We use sample to get these numbers.
 
-Strategy3 <- function(n,k,cards_num){ # Begin function, using n,k,cards_num parameters to work with Pone and Pall
+
+## Strategy 3:
+## In this strategy the prisoner opens n boxes at random, with replacement, i.e. he may open an already open box
+
+## Prisoner k uses Strategy 3 to find their number card
+Strategy3 <- function(n,k,cards_num){ 
   cards_picked <- sample(cards_num,n) # Randomly select n boxes from cards_num to open
   if (k %in% cards_num[cards_picked]){ # Check if prisoner number is in any of the boxes selected
     return(TRUE) 
@@ -95,23 +132,27 @@ Strategy3 <- function(n,k,cards_num){ # Begin function, using n,k,cards_num para
   }
 } # End function
 
-## Write a function 'Pone' to estimate the probability of a prisoner successfully finding their number
+
+
+## 'Pone' is a function which estimates the probability of a prisoner,k, successfully finding their card number in 
+## nreps simulated trials, using any one of the avaliable strategies
 
 Pone <- function(n,k,strategy,nreps) {
-  # create an empty vector to store whether the prisoner k has found his number in each simulation
+  # create an empty vector to store the outsome of each simulation as 1/0 = Success/ Failure to find his card
   success <- rep(0, nreps)
   for (i in 1:nreps) {
-    #simulate the order of card numbers
+    # simulate the order of card numbers
     cards_num <- sample(1:(2*n), 2*n, replace=FALSE)
     success[i] <- strategy(n,k,cards_num)
   }
-  #return(success)
-  #use 'sum' to count the number of successes or TRUE values
-  #show the success probability
+  # return the frequentist probability of success as: 
+  # total number of simulated successes / total number of simulations
   return(sum(success)/nreps)
 }
 
-## Create a function Pall - version with 'nreps'
+## 'Pall' is a function to find the probability of all the 2n prisoners simultaneously finding their cards in a 
+## single simulation and thus being able to escape. All prisoners must use the same strategy and the probablity 
+## is calculated by analysing the results from nreps simulated trials 
 
 Pall <- function(n,strategy,nreps) {
   #create a vector to record the result of each simulation with default values of 1s
@@ -123,57 +164,61 @@ Pall <- function(n,strategy,nreps) {
     for (k in 1:(2*n)) {
       result <- strategy(n,k,cards_num) # save the result of strategy for the k-th prisoner
       num_success[i] <- num_success[i] * result # if result is 1 keep 1 in the vector. If 0 change to 0.
-      if (result == 0){ # stop if any prisoner does not escape
+      if (result == 0){ # stop if any prisoner does not escape, this cuts down simulation run-time
         break
       }
     }
   }
+  # return the frequentist probability as: total number of simulated successes / total number of simulated trials
   return(sum(num_success)/nreps)
 }
 
-###pone takes args: n,k,strategy,nreps
-###individual probs
+### Sample Results ###
+
+### individual prisoner probabilities: 
+### Pone takes args: n,k,strategy,nreps
 
 Pone(5,5,Strategy1,10000)
 Pone(50,50,Strategy1,10000)
-#one prisoner & strategy 1: prob success ~ 50%
+# one prisoner & strategy 1: prob success ~ 50%  (for all n)
 
 Pone(5,5,Strategy2,10000)
 Pone(50,50,Strategy2,10000)
-#one prisoner & strategy 2: prob success ~40% (n=5) ~37% (n>50)
+# one prisoner & strategy 2: prob success ~40%  (n=5) ~37%  (n>50)
 
 Pone(5,5,Strategy3,10000)
 Pone(50,50,Strategy3,10000)
-#one prisoner & strategy 3: prob success ~50% 
+# one prisoner & strategy 3: prob success ~50%  (for all n)
 
-
-#pall takes args: n,strategy,nreps
-#joint probs 
+### joint probabilities for all prisoners as a collective:  
+### Pall takes args: n,strategy,nreps
+ 
 
 Pall(5,Strategy1,10000)
 Pall(50,Strategy1,10000)
-#10 prisoners & strategy 1: prob success ~35%
-#100 prisoners & strategy 1: prob success ~30%
+#10 prisoners & strategy 1: prob success ~35% (n=5)
+#100 prisoners & strategy 1: prob success ~30% (n=50)
 
 Pall(5,Strategy2,10000)
 Pall(50,Strategy2,10000)
-#10 prisoners & strategy 2: prob success ~0.01%
-#100 prisoners & strategy 2: prob success ~0% (smaller than precision)
+#10 prisoners & strategy 2: prob success ~0.01%  (n=5)
+#100 prisoners & strategy 2: prob success ~0% (smaller than precision)  (n=50)
 
 Pall(5,Strategy3,10000)
 Pall(50,Strategy3,10000)
-#10 prisoners & strategy 3: prob success ~1%
-#100 prisoners & strategy 3: prob success ~0% (smaller than precision)
+#10 prisoners & strategy 3: prob success ~1%  (n=5)
+#100 prisoners & strategy 3: prob success ~0% (smaller than precision) (n=50)
 
 
+# STILL TO DO Q4 - WILL DRAFT THEN INSERT TOMORROW 
 #
-#
-# Add some commentary about the funky results ;)
+# 
 #
 #
 
 
-#calculate the probability of loop lengths 
+
+#Calculate the probability of loop lengths 
 dloop <- function(n, nreps) {
   each_loop_lengths <- c() #list to store the loop lengths generated by all simulations
   max_loop_lengths <- c()
@@ -226,4 +271,6 @@ dloop <- function(n, nreps) {
   cat("your probability vector for producing at least one loop of length i: \n", prob_vec_y)
   return(prob_vec_y)
 }#end function
+
+
 VAR_1 <- dloop(50, 10000)
