@@ -213,10 +213,15 @@ Pall(50,Strategy3,10000)
 
 
 # STILL TO DO Q4 - WILL DRAFT THEN INSERT TOMORROW 
-#
-# 
-#
-#
+
+
+## Remarks
+# Strategy 1 and Strategy 3 have similar individual success probabilities of 50%, 
+# while Strategy 1 has much higher joint success probability of above 30%.
+# It is surprising that Strategy 3 has high individual success probability, but very low joint probability.
+# To summarise, Strategy 1 is a great choice for prisoners, for both themselves and others 
+# as it has high individual and joint success probabilities finding their numbers.
+
 
 
 
