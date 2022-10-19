@@ -1,3 +1,4 @@
+st <- Sys.time()
 #### Team Members
 
 #### address of github repo
@@ -82,7 +83,6 @@ Strategy2 <- function(n,k,cards_num) {
   }
 }
 
-
 ## Strategy 3, selecting n boxes randomly to open. We use sample to get these numbers.
 
 Strategy3 <- function(n,k,cards_num){ # Begin function, using n,k,cards_num parameters to work with Pone and Pall
@@ -112,20 +112,22 @@ Pone <- function(n,k,strategy,nreps) {
   return(sum(success)/nreps)
 }
 
-Pone(10,1,Strategy1,1000)
-
-
 ## Create a function Pall - version with 'nreps'
 
 Pall <- function(n,strategy,nreps) {
   #create a vector to record the result of each simulation with default values of 1s
   num_success <- rep(1,nreps)
+  st <- Sys.time()
   for (i in 1:nreps) {#for each simulation
     #generate a random order of card numbers
     cards_num <- sample(1:(2*n), 2*n, replace=FALSE)
     #use the strategies to calculate whether each prisoner can find their correct number within n times
     for (k in 1:(2*n)) {
-      num_success[i] <- num_success[i] * strategy(n,k,cards_num)
+      result <- strategy(n,k,cards_num) # save result
+      num_success[i] <- num_success[i] * result # if result is 1 keep 1 in the vector. If 0 change to 0.
+      if (result == 0){ # stop if any prisoner does not escape
+        break
+      }
     }
   }
   return(sum(num_success)/nreps)
@@ -133,6 +135,7 @@ Pall <- function(n,strategy,nreps) {
 
 ###pone takes args: n,k,strategy,nreps
 ###individual probs
+
 Pone(5,5,Strategy1,10000)
 Pone(50,50,Strategy1,10000)
 #one prisoner & strategy 1: prob success ~ 50%
@@ -148,6 +151,7 @@ Pone(50,50,Strategy3,10000)
 
 #pall takes args: n,strategy,nreps
 #joint probs 
+
 Pall(5,Strategy1,10000)
 Pall(50,Strategy1,10000)
 #10 prisoners & strategy 1: prob success ~35%
@@ -224,15 +228,6 @@ dloop <- function(n, nreps) {
   cat("your probability vector for producing at least one loop of length i: \n", prob_vec_y)
   return(prob_vec_y)
 }#end function
-
-
 VAR_1 <- dloop(50, 10000)
-
-
-
-
-
-
-
-
-
+et <- Sys.time()
+et - st
