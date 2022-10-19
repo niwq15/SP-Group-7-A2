@@ -180,8 +180,8 @@ dloop <- function(n,nreps) {
 ## Show an example to use 'dloop' to estimate the probabilities for n = 50
 
 loop50 <- dloop(50,10000)
-# The probability that the loop length is no more than 50
-sum(loop50[1:50])
+# The probability of no loop length more than 50
+1 - sum(loop50[51:100])
 
 # Visualize the probabilities
 hist(loop50)
