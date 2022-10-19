@@ -140,7 +140,7 @@ Pone(50,50,Strategy1,10000)
 #one prisoner & strategy 1: prob success ~ 50%
 
 Pone(5,5,Strategy2,10000)
-Pone(500,500,Strategy2,10000)
+Pone(50,50,Strategy2,10000)
 #one prisoner & strategy 2: prob success ~40% (n=5) ~37% (n>50)
 
 Pone(5,5,Strategy3,10000)
