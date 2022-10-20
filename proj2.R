@@ -297,4 +297,11 @@ dloop <- function(n, nreps) {
 }#end function
 
 
-VAR_1 <- dloop(50, 10000)
+dist <- dloop(50, 10000)
+## The probability of no loop longer than 50 = 
+## 1 - the probability that there exists loop length larger than 50 = 
+## 1 - the sum of the probability that there exists loop length from 51 to 100
+1 - sum(dist[51:100])
+
+## Visualise the probabilities sensibly
+
