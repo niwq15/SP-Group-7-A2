@@ -252,7 +252,7 @@ dloop <- function(n, nreps) {
   
   for (i in 1:nreps){ 
     #simulate a new set of boxes for each simulation
-    boxes <- sample(1 : (2*n), 2*n , replace=FALSE) 
+    cards_num <- sample(1 : (2*n), 2*n , replace=FALSE) 
     #store a list of closed boxes in each simulation
     unopened_boxes <- 1:(2*n)
     
@@ -262,20 +262,20 @@ dloop <- function(n, nreps) {
     #scan for loops, (while more than 2 boxes are still closed, indexing breaks down for smaller loops)
     while (length(unopened_boxes) > 2 ){
       #pick the smallest number unopened box and store the value of the card inside 
-      cards_picked <- boxes[unopened_boxes[1]]
+      cards_picked <- cards_num[unopened_boxes[1]]
       
       #pick your next box according to your last card and scan each closed loop
       for (b in 2:length(unopened_boxes)){ #max loop length is the number of closed boxes
         #store the number of the latest card
-        cards_picked <- c(cards_picked, boxes[cards_picked[b-1]])
+        cards_picked <- c(cards_picked, cards_num[cards_picked[b-1]])
       }#end for 
       
       
       #scanning the last 2 boxes
-      if (length(unopened_boxes) == 2 && boxes[unopened_boxes[1]] == unopened_boxes[2]) {
+      if (length(unopened_boxes) == 2 && cards_num[unopened_boxes[1]] == unopened_boxes[2]) {
         #we have found a 2 item long loop 
         new_loop_lengths <- c(new_loop_lengths, 2) 
-      } else if ((length(unopened_boxes) == 2) && (boxes[unopened_boxes[1]] == unopened_boxes[1])) {
+      } else if ((length(unopened_boxes) == 2) && (cards_num[unopened_boxes[1]] == unopened_boxes[1])) {
         #we have found one or more loops with length 1
         new_loop_lengths <- c(new_loop_lengths, 1) 
       }
