@@ -283,11 +283,15 @@ dloop <- function(n, nreps) {
   
 }#end function
 
-## Comment: 
-## We choose the above version as it is quite efficient and there is an alternative efficient version of the dloop function availble below
-## The method has the same inputs and output as the above version. The method creates an empty array, 'loop_len' and uses simulation to count the occurrences of each 
+#################### Alternative dloop function : 
+## This version of dloop takes the same inputs n and nreps, and returns the same output, the probability distribution vector. 
+## This version takes under 10 seconds on some devices but over 2 minuites on others (Cam's machine). We have included this version 
+## because it uses the alternative interpretation of loops as nested objects and their lengths as the depth of nesting. 
+##
+## The method creates an empty array, 'loop_len' and uses simulation to count the occurrences of each 
 ## loop length ranging from 1 to 2n, which will be stored in the rows of 'loop_len'. Then we will convert the values to binary and give 1s to those 
 ## loop lengths which occur at least once. Based on the columns of 'loop_len', we can calculate the probability of each loop length occurring at least once.
+## 
 ## dloop <- function(n,nreps) {
 ##  # create an empty array to store the number of occurrences of loops with lengths from 1 to 2n for each simulation
 ##  # default value is 1 as ...
@@ -320,7 +324,7 @@ dloop <- function(n, nreps) {
 ##  #calculate the probability of each loop length
 ##  return(colSums(loop_len)/nreps)
 ##}
-
+################################################
 
 
 
