@@ -217,7 +217,7 @@ Pall(50,Strategy3,10000)
 ## More explanations
 ## For Strategy 1, consider the distribution of maximum loop lengths amongst the boxes and cards. The cycle of box and card numbers 
 ## must eventually return the prisoner to open a box with his card number inside if he is allowed to open as many boxes as he wants, 
-## as the numbers used are continuous (integers) and finite. Thus, the high joint success probability can be calculated as the cumulative 
+## as the numbers used are part of a finite sequence. Thus, the high joint success probability can be calculated as the cumulative 
 ## probability of the maximum loop length being less than n, which we have determined to be approximately 31%
 
 ## For Strategy 2, the marginal probability is lower than 50% because the conditions for the prisoner's success are 1.the prisoner 
