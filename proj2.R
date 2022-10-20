@@ -228,7 +228,7 @@ Pall(50,Strategy3,10000)
 ## It is a function which returns the probability distribution vector for each loop length occuring in a simulation.
 ## It takes the parameters n (making 2n boxes) and nreps (to make nreps simulations). In each simulation the boxes are 
 ## opened one by one while iterating through a loop, to find its length. The unique loop lengths from each simulation 
-## are then tabulated and by nreps (the total number of simulations.
+## are then tabulated and by nreps (the total number of simulations).
 ## This creates a probability vector (prob_vec_y = probability of each loop length occurring at least once),
 ## which is the output of the function. 
 dloop <- function(n, nreps) {
@@ -282,6 +282,45 @@ dloop <- function(n, nreps) {
   return(prob_vec_y)
   
 }#end function
+
+## Comment: 
+## We choose the above version as it is quite efficient and there is an alternative efficient version of the dloop function availble below
+## The method has the same inputs and output as the above version. The method creates an empty array, 'loop_len' and uses simulation to count the occurrences of each 
+## loop length ranging from 1 to 2n, which will be stored in the rows of 'loop_len'. Then we will convert the values to binary and give 1s to those 
+## loop lengths which occur at least once. Based on the columns of 'loop_len', we can calculate the probability of each loop length occurring at least once.
+## dloop <- function(n,nreps) {
+##  # create an empty array to store the number of occurrences of loops with lengths from 1 to 2n for each simulation
+##  # default value is 1 as ...
+##  loop_len <- array(rep(1,nreps*(2*n)), dim=c(nreps,2*n)) #each row referring to one simulation
+##  prob <- rep(0,2*n) #create an empty vector to store the targeted probabilities
+##  for (i in 1:nreps) {#for each simulation
+##    cards_num <- sample(1:(2*n), 2*n, replace=FALSE)
+##    cards_picked <- rep(0,2*n)
+##    #calculate loop lengths for each prisoner's number
+##    for (k in 1:(2*n)) {
+##      cards_picked[1] <- cards_num[k]
+##      for (b in 2:(2*n)) {
+##        if (cards_picked[b-1] ==k) {
+##          break #stop the loop if the loop lenth has been found
+##        } else {
+##          cards_picked[b] <- cards_num[cards_picked[b-1]]
+##          loop_len[i,k] <- loop_len[i,k] + 1
+##        }
+##      }
+##    }
+##    #now we obtain a row which specifies the loop length for each k in 1:2n
+##    #use tabulate function to count the occurrences of each loop length which is between 1 and 2n
+##    len <- append(loop_len[i,], 2*n) #add a '2*n' to keep the length of the vector when using tabulate
+##    len <- tabulate(len)
+##    loop_len[i,] <- replace(len, length(len), len[length(len)]-1) #eliminate the impact of the added '2*n'
+##    #convert the values to be binary
+##    loop_len[i,] <- as.numeric(loop_len[i,] >= 1) # give 1s to those loop lengths which occur at least once
+##  }#end for each simulation
+##  #notice that each column of 'loop_len' shows whether the loop length appearing in each simulation
+##  #calculate the probability of each loop length
+##  return(colSums(loop_len)/nreps)
+##}
+
 
 
 
