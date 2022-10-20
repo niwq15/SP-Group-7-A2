@@ -64,7 +64,7 @@
 ## If k is not equal to p, then the prisoner goes to box number k and opens it
 ## The process will be repeated until they have either found the card with number p or opened n boxes without finding it
 
-## Prisoner k uses Strategy 1 to find their number
+## Prisoner 'k' uses Strategy 1 to find their number amoungst '2n' boxes 'cards_num'
 Strategy1 <- function(n,k,cards_num) {
   #create an empty vector to store card numbers as they are read
   cards_picked <- rep(0, n) # the prisoner can read at most n cards
@@ -94,7 +94,7 @@ Strategy1 <- function(n,k,cards_num) {
 ## The prisoner uses the card number in each box to pick his next box to open.
 ## The prisoner can open at most n boxes in order to find the card with their number on it
 
-## Prisoner k uses Strategy 2 to find their number card
+## Prisoner 'k' uses Strategy 2 to find their number amoungst '2n' boxes 'cards_num'
 Strategy2 <- function(n,k,cards_num) {
   #create an empty vector to store card numbers that have been read
   cards_picked <- rep(0, n) # the prisoner can read at most n cards
@@ -122,7 +122,7 @@ Strategy2 <- function(n,k,cards_num) {
 ## Strategy 3:
 ## In this strategy the prisoner opens n boxes at random, with replacement, i.e. he may open an already open box
 
-## Prisoner k uses Strategy 3 to find their number card
+## Prisoner 'k' uses Strategy 1 to find their number amoungst '2n' boxes 'cards_num'
 Strategy3 <- function(n,k,cards_num){ 
   cards_picked <- sample(cards_num,n) # Randomly select n boxes from cards_num to open
   if (k %in% cards_num[cards_picked]){ # Check if prisoner number is in any of the boxes selected
@@ -136,8 +136,8 @@ Strategy3 <- function(n,k,cards_num){
 
 
 
-## 'Pone' is a function which estimates the probability of a prisoner,k, successfully finding their card number in 
-## nreps simulated trials, using any one of the avaliable strategies
+## 'Pone' is a function which estimates the probability of a prisoner,k, successfully finding their card number  (k)
+## amoungst 2n boxes (cards_num) in nreps simulated trials, using any one of the available strategies encoded above
 
 Pone <- function(n,k,strategy,nreps) {
   # create an empty vector to store the outsome of each simulation as 1/0 = Success/ Failure to find his card
@@ -153,8 +153,8 @@ Pone <- function(n,k,strategy,nreps) {
 }
 
 ## 'Pall' is a function to find the probability of all the 2n prisoners simultaneously finding their cards in a 
-## single simulation and thus being able to escape. All prisoners must use the same strategy and the probablity 
-## is calculated by analysing the results from nreps simulated trials 
+## single simulation and thus being able to escape. All prisoners must use the same strategy and the probability 
+## is calculated by analyzing the results from nreps simulated trials 
 
 Pall <- function(n,strategy,nreps) {
   #create a vector to record the result of each simulation with default values of 1s
@@ -194,7 +194,7 @@ Pone(50,50,Strategy3,10000)
 
 ### joint probabilities for all prisoners as a collective:  
 ### Pall takes args: n,strategy,nreps
- 
+
 
 Pall(5,Strategy1,10000)
 Pall(50,Strategy1,10000)
