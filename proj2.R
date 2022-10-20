@@ -126,16 +126,13 @@ Strategy2 <- function(n,k,cards_num) {
 ## In Strategy 3, we show another idea of selecting n card numbers and then checking whether k is inside
 
 ## Strategy 3:
-## In this strategy the prisoner opens n boxes at random, without replacement
-## The prisoner will open n different boxes. The function outputs a TRUE/FALSE
-## for use in the Pone and Pall functions in future.
-
-## Prisoner 'k' uses Strategy 3 to find their number amongst '2n' boxes 'cards_num'
+## The Strategy3 function has inputs, n, k, and cards_num.
+## The prisoner opens n boxes at random, without replacement and the prisoner will open n different boxes. 
+## The Strategy3 function will return 'TRUE' if the prisoner k will find their number within the n tries, otherwise 'FALSE'.
 Strategy3 <- function(n,k,cards_num){ 
   cards_picked <- sample(cards_num,n,replace=FALSE) # Randomly select n boxes from cards_num to open
   any(k == cards_picked) # check whether the prisoner's number appears in the selected card_num
 } # End function
-
 
 
 ## 'Pone' is a function which estimates the probability of a prisoner, k, successfully finding their card number (k)
