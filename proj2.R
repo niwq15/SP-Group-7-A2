@@ -297,16 +297,15 @@ prob_vec <- dloop(n, 10000)
 ##plotting the probability distribution
 #create an x axis 
 x_axis <- 1:length(prob_vec)
-plot(x_axis, prob_vec, xlab = "Loop Length", ylab = "Probability ", main = "Probability Distribution for the Occurrence \n of one or more Loop Lengths per Simulation", cex.main = 1)
+plot(x_axis, prob_vec, xlab = "Loop Length", ylab = "Probability ", main = "Probability Distribution for the Occurrence \n of Loop Lengths (at least once) per Simulation", cex.main = 1)
 
 #output the probability distribution vector: 
 cat("your probability vector for producing at least one loop of length i: \n", prob_vec, "\n")
 
-## Only one loop length > n may exist at a time. In a simulation the lengths of all loops present must sum to 2n. 
-## Therefore P(loop length >n occurs at least once ) == P(loop length >n occurs once ) and is mutually exclusive with 
-## all other loop lengths >n . If we take 1-sum(p(loop length >n)) we are left with the probability of no loops longer
-## than n occurring in the simulation. In this case Strategy 1 is guaranteed success. 
+## Note that 'no loop length longer than 50' indicates that the max loop length is 50. 
+## P(no loop longer than 50) = 1 - P(there exist loop lengths larger than 50)
+## Since the total loop lengths must sum to 2n, the loops of length greater than n can only occur once.
+## It implies that P(loop length >n occurs at least once ) = P(loop length >n occurs exactly once ).
+## Thus, P(there exist loop lengths larger than 50) is equal to the sum of P(there exists loop length i) where i ranges from 51 to 100. 
 
 cat( "Probability of Strategy 1 succeeding: \n", 1 - sum(prob_vec[(n+1):(2*n)]), "\n this is also the probability of the maximum loop length being no more than n")
-
-
