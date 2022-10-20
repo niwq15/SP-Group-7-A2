@@ -2,7 +2,7 @@
 # Fatima Kasenally (S2443602); Wenqi Ni (s1792412); Cameron Allan (S1748084)
 
 #### address of github repo:
-#https://github.com/niwq15/SP-Group-7-A2
+# https://github.com/niwq15/SP-Group-7-A2
 
 
 #### Contributions
@@ -14,26 +14,19 @@
 
 # Further Details: 
 
-# each of us should add more here. we can say what we have done, involving different versions of functions above
+# Cameron wrote the used Strategy 3 function and added an if statement to speed up the Pall function. 
+# Some attempts were made to use arrays to write more efficient strategy functions but these were slower. 
+# Other versions of Pone and Pall were also made but the final versions used were faster. 
+# The dloop function written was not used as other members' dloops were better.
 
 
-# Cameron wrote the used strategy 3 function and added an if statement to speed
-# up the Pall function. Some attempts were made to use arrays to write more
-# efficient strategy functions but these were slower. Other versions of Pone and
-# Pall were also made but the final versions used were faster. The dloop
-# function written was not used as other members' dloops were better.
+# Wenqi created the final versions of the functions Strategy 1, Strategy 2, Pone, Pall and the probability of no loop longer than 50 
+# in a random reshuffling of cards. She wrote comments for these functions and those results. 
+# She also provided a version of Strategy3, dloop function and the visualisation of the probabilities sensibly. 
 
-
-# Wenqi created the final versions of the functions Strategy 1, Strategy 2, Pone, 
-# and the probability of no loop longer than 50 in a random reshuffling of cards to boxes
-
-
-# Other Tasks: (correct your own)
-# Cameron - the readme file in the repository
-# Wenqi - Q3 - Q6 stuff 
-# Fatima created an alternative version of strategy 2 and pone. She created the final version of pall and dloop. 
+# Fatima created an alternative version of Strategy 2 and pone. She created the final version of pall and dloop. 
 # She also provided the sample solutions for various n and strategy combinations, and wrote comments to explain the results,
-# generated the probability ditribution plot and returned the total probability of success for strategy 1
+# generated the probability ditribution plot and returned the total probability of success for Strategy 1
 
 
 #### Overview 
@@ -90,8 +83,6 @@ Strategy1 <- function(n,k,cards_num) {
   }
 }
 
-
-
 ## Strategy 2:
 
 ## The Strategy2 function has inputs, n, k, and cards_num.
@@ -120,10 +111,6 @@ Strategy2 <- function(n,k,cards_num) {
     return(TRUE)
   }
 } #The function returns TRUE/FALSE expressing that the prisoner has FOUND/FAILED TO FIND his card 
-
-## In Strategy 1 and Strategy 2, we use the idea that once prisoners find their numbers, they will stop
-## We use 'break' to save on running time
-## In Strategy 3, we show another idea of selecting n card numbers and then checking whether k is inside
 
 ## Strategy 3:
 ## The Strategy3 function has inputs, n, k, and cards_num.
