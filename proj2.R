@@ -122,7 +122,7 @@ Strategy3 <- function(n,k,cards_num){
 } # End function
 
 
-## The 'Pone' function takes the inputs 'n', 'k', 'strategy' and 'nreps' 
+## The 'Pone' function takes the inputs 'n', 'k', 'strategy' and 'nreps' (the number of replicate simulations).
 ## 'Pone' is a function which calculates the probability of an individual prisoner 'k' finding his card number amoungst 2n boxes. 
 ## The prisoner can open n boxes and the trial is simulated nreps times. In each simulation a set-up is generated and one strategy 
 ## is used for the prisoner's search. The outcome of each simulation is recorded (success/failure) and 
@@ -141,7 +141,7 @@ Pone <- function(n,k,strategy,nreps) {
 }
 
 
-## The 'Pall' function takes the inputs 'n', 'strategy' and 'nreps'
+## The 'Pall' function takes the inputs 'n', 'strategy' and 'nreps'.
 ## 'Pall' is a function to find the probability of all the 2n prisoners finding their cards in a single simulation
 ## and all being able to escape. All prisoners must use the same strategy. The probability is calculated by finding
 ## the total number of all prisoner successes and dividing by the number of simulations run (nreps).
