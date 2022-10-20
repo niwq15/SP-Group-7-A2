@@ -8,22 +8,24 @@
 #### Contributions
 
 # Functions we each made versions of:
-# Cameron - Strategy3, unused alternatives to each strategy using arrays, Pone, Pall optimization, unused dloop
+# Cameron - Strategy3, alternatives to each strategy using arrays, Pone, Pall, dloop
 # Wenqi - Strategy1, Strategy2, Strategy3, Pone, Pall, dloop 
 # Fatima - Strategy2, Pone, Pall, dloop 
 
 # each of us should add more here. we can say what we have done, involving different versions of functions above
+
+# Cameron  wrote the used strategy 3 function and added an if statement to
+# speed up the Pall function. Some attempts were made to use arrays to record
+# the simulation information but this was found to be slower. Other versions of
+# Pone and Pall were also made but the final versions used were faster.
 
 # Wenqi created the final versions of the functions Strategy 1, Strategy 2, Pone, 
 # and the probability of no loop longer than 50 in a random reshuffling of cards to boxes
 # 
 
 
-# Cameron added if statement to speed up the Pall function
-
-
 # Other Tasks: (correct your own)
-# Cameron - optimising stuff and array stuff
+# Cameron - 
 # Wenqi - Q3 - Q6 stuff 
 # Fatima - Q3 - Q6 stuff 
 
@@ -121,7 +123,8 @@ Strategy2 <- function(n,k,cards_num) {
 
 ## Strategy 3:
 ## In this strategy the prisoner opens n boxes at random, without replacement
-## The prisoner will open n different boxes
+## The prisoner will open n different boxes. The function outputs a TRUE/FALSE
+## for use in the Pone and Pall functions in future.
 
 ## Prisoner 'k' uses Strategy 3 to find their number amongst '2n' boxes 'cards_num'
 Strategy3 <- function(n,k,cards_num){ 
