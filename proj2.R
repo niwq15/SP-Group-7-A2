@@ -304,7 +304,7 @@ plot(x_axis, prob_vec, xlab = "Loop Length", ylab = "Probability ", main = "Prob
 #output the probability distribution vector: 
 cat("your probability vector for producing at least one loop of length i: \n", prob_vec, "\n")
 
-## For loop lengths greater than n only one may occur at a time as the total loop lengths must sum to 2n. 
+## Only one loop length > n may exist at a time. In a simulation the lengths of all loops present must sum to 2n. 
 ## Therefore P(loop length >n occurs at least once ) == P(loop length >n occurs once ) and is mutually exclusive with 
 ## all other loop lengths >n . If we take 1-sum(p(loop length >n)) we are left with the probability of no loops longer
 ## than n occuring in the simulation. In this case Strategy 1 is guaranteed success. 
