@@ -145,7 +145,7 @@ Pone <- function(n,k,strategy,nreps) {
 ## 'Pall' is a function to find the probability of all the 2n prisoners finding their cards in a single simulation
 ## and all being able to escape. All prisoners must use the same strategy. The probability is calculated by finding
 ## the total number of all prisoner successes and dividing by the number of simulations run (nreps).
-## The Function then returns this probability vector as the output.
+## The Function then returns this probability as the output.
 Pall <- function(n,strategy,nreps) {
   #create a vector to record the result of each simulation with default values of 1s
   num_success <- rep(1,nreps)
@@ -213,7 +213,7 @@ Pall(50,Strategy3,10000)
 ## For Strategy 1, consider the distribution of maximum loop lengths amongst the boxes and cards. The cycle of box and card numbers 
 ## must eventually return the prisoner to open a box with his card number inside if he is allowed to open as many boxes as he wants, 
 ## as the numbers used are part of a finite sequence. Thus, the high joint success probability can be calculated as the cumulative 
-## probability of the maximum loop length being less than n, which we have determined to be approximately 31%
+## probability of the maximum loop length being less than n, which we have determined to be approximately 31%.
 
 ## For Strategy 2, the marginal probability is lower than 50% because the conditions for the prisoner's success are 1.the prisoner 
 ## select the correct loop with his card in it at random; 2.the loop he picks must also be shorter than n. 
@@ -224,7 +224,7 @@ Pall(50,Strategy3,10000)
 ## marginal probabilities to produce a joint probability of (0.5)^(2n), which tends to 0 as n increases. 
 
 
-##  The 'dloop' function takes in the inputs: 'n' and 'nreps' 
+## The 'dloop' function has inputs: 'n' and 'nreps'. 
 ## 'dloop' is a function which returns the probability distribution vector for each loop length occuring in a simulation.
 ## It takes the parameters n (making 2n boxes) and nreps (to make nreps simulations). In each simulation all the boxes 
 ## are opened and the lengths of all loops are counted. All the loop lengths are then tabulated and divided by nreps. 
