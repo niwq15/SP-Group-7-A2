@@ -270,7 +270,7 @@ dloop <- function(n, nreps) {
         cards_picked <- c(cards_picked, boxes[cards_picked[b-1]])
       }#end for 
       
-      #DISCUSS FOLLOWING IF (ADDS 4 seconds)
+      
       #scanning the last 2 boxes
       if (length(unopened_boxes) == 2 && boxes[unopened_boxes[1]] == unopened_boxes[2]) {
         #we have found a 2 item long loop 
