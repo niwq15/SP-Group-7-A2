@@ -59,12 +59,11 @@
 
 
 ## Strategy 1:
-## Each prisoner with their number 'k' starts at the k-th box which contains card b
-## If k is not equal to b, then the prisoner goes to box b and opens it
-## The process will be repeated until they have either found the card k or opened n boxes without finding it
 
-## Prisoner 'k' uses Strategy 1 to find their number amongst '2n' boxes 'cards_num'
-## where 'cards_num' is the card numbers indexed by the box numbers.
+## The Strategy1 function has inputs, n, k, and 'cards_num' (the card numbers indexed by the box numbers). 
+## Each prisoner with their number 'k' starts at the k-th box which contains card b. If k is not equal to b, then the prisoner 
+## goes to box b and opens it. The process will be repeated until they have either found the card k or opened n boxes without finding it
+## The Strategy1 function will return 'TRUE' if the prisoner k will find their number within the n tries, otherwise it will return 'FALSE'.
 Strategy1 <- function(n,k,cards_num) {
   #create an empty vector to store card numbers as they are read
   cards_picked <- rep(0, n) # the prisoner can read at most n cards
@@ -90,11 +89,12 @@ Strategy1 <- function(n,k,cards_num) {
 
 
 ## Strategy 2:
+
+## The Strategy2 function has inputs, n, k, and cards_num.
 ## This strategy follows an identical procedure to strategy 1, except that the starting box is randomly selected
 ## The prisoner uses the card number in each box to pick his next box to open.
 ## The prisoner can open at most n boxes in order to find the card with their number on it.
-
-## Prisoner 'k' uses Strategy 2 to find their number amongst '2n' boxes 'cards_num'
+## The Strategy2 function will return 'TRUE' if the prisoner k will find their number within the n tries, otherwise 'FALSE'.
 Strategy2 <- function(n,k,cards_num) {
   #create an empty vector to store card numbers that have been read
   cards_picked <- rep(0, n) # the prisoner can read at most n cards
