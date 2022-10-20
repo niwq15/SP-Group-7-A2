@@ -29,8 +29,8 @@
 
 
 
-#### Overview / summary
-# This file holds the self-contained code to simulate a generalised version of the famous '100 Prisoners Problem' 
+#### Overview 
+# This file holds the self-contained code to use stochastic simulation to study a generalised version of the famous '100 Prisoners Problem' 
 # The problem is defined as follows: 
 # Consider a prison containing 2n prisoners, each with a unique identification number ranging from 1 to 2n. 
 # The prison has a room with 2n boxes, each uniquely numbered from 1 to 2n and each containing a single card. 
@@ -48,30 +48,22 @@
 # we will give some comments about which strategy has the highest success probabilities for 
 # both individuals and the collective. 
 
-# The following code uses stochastic simulation to explore the prisoner problem. 
-
-## There are 2n cards each printed with a unique number from 1 to 2n.
-## The 2n cards are randomly placed one in each of 2n boxes
-## Use sample function to give a random order of card numbers
-## cards_num <- sample(1:(2*n), 2*n, replace=FALSE)
-## Therefore cards_num simulates 2n cards (element value) randomly placed in 2n boxed (element index)
-
-## Each function expressing the various strategies for opening boxes to find cards will require the same 
+## Each function expressing the different strategies for opening boxes to find cards will require the same 
 ## input parameters : n,k,cards_num. Where n parameterises the 2n number of boxes, prisoner and cards in our problem.
-## k is the prisoner's number in a given trial run and cards_num, as explained above, represents the boxes and 
-## cards places in them. As the boxes and cards comfiguration must remain the same between prisoner trials it cannot
-## be defined within the function and must be called on and externally defined. 
+## k is the prisoner's number and cards_num represents the random orders of cards placed in boxes. 
+## [As the boxes and cards comfiguration must remain the same between prisoner trials it cannot
+## be defined within the function and must be called on and externally defined.] ?
 ## Uniform input parameters allows the implemented strategy to be variable in each simulation as each strategy 
-## function is interchangable. This is requires by functions 'Pone' and 'Pall'
-
+## function is interchangable. This is required by functions 'Pone' and 'Pall'
 
 
 ## Strategy 1:
-## Each prisoner with their number 'p' starts at the p-th box whose number on the card is k
-## If k is not equal to p, then the prisoner goes to box number k and opens it
+## Each prisoner with their number 'b' starts at the p-th box whose number on the card is k
+## If k is not equal to b, then the prisoner goes to box number k and opens it
 ## The process will be repeated until they have either found the card with number p or opened n boxes without finding it
 
 ## Prisoner 'k' uses Strategy 1 to find their number amoungst '2n' boxes 'cards_num'
+## where 'cards_num' is a order of card numbers
 Strategy1 <- function(n,k,cards_num) {
   #create an empty vector to store card numbers as they are read
   cards_picked <- rep(0, n) # the prisoner can read at most n cards
@@ -97,7 +89,7 @@ Strategy1 <- function(n,k,cards_num) {
 
 
 ## Strategy 2:
-## This strategy follows an identicle procedure to strategy 1, save that the starting box is randombly selected
+## This strategy follows an identicle procedure to strategy 1, except that the starting box is randombly selected
 ## The prisoner uses the card number in each box to pick his next box to open.
 ## The prisoner can open at most n boxes in order to find the card with their number on it
 
@@ -127,7 +119,7 @@ Strategy2 <- function(n,k,cards_num) {
 
 
 ## Strategy 3:
-## In this strategy the prisoner opens n boxes at random, with replacement, i.e. he may open an already open box
+## In this strategy the prisoner opens n boxes at random, without replacement (check !!)
 
 ## Prisoner 'k' uses Strategy 1 to find their number amoungst '2n' boxes 'cards_num'
 Strategy3 <- function(n,k,cards_num){ 
