@@ -222,6 +222,10 @@ Pall(50,Strategy3,10000)
 ## as the numbers used are continuous (integers) and finite. Thus, the high joint success probability can be calculated as the cumulative 
 ## probability of the maximum loop length being less than n, which we have determined to be approximately 30%
 
+## For Strategy 2,  the marginal probability is lower than 50% because the conditions for the prisoner's success are 1.the prisoner 
+## select the correct loop with his card in it at random; 2.the loop he picks must also be shorter than n. 
+## Our results show that the probability is about 37-40% (varies with n). The joint probability tends to 0 for the similar reason as strategy 3.
+
 ## For Strategy 3, the probability of finding their card every time they open a box is 1/2n and if he opens n boxes at random the 
 ## probability of finding his card is n/2n (=50%). For 2n prisoners all finding their cards in a simulation we multiply the independent 
 ## marginal probabilities to produce a joint probability of (0.5)^(2n), which tends to 0 as n increases. 
