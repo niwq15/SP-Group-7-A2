@@ -122,9 +122,11 @@ Strategy3 <- function(n,k,cards_num){
 } # End function
 
 
-## 'Pone' is a function which estimates the probability of a prisoner, k, successfully finding their card number (k)
-## within the n tries amongst 2n boxes (cards_num) in nreps simulated trials, using any one of the available strategies encoded above
-
+## The 'Pone' function takes the inputs 'n', 'k', 'strategy' and 'nreps' 
+## 'Pone' is a function which calculates the probability of an individual prisoner 'k' finding his card number amoungst 2n boxes. 
+## The prisoner can open n boxes and the trial is simulated nreps times. In each simulation a set-up is generated and one strategy 
+## is used for the prisoner's search. The outcome of each simulation is recorded (success/failure) and 
+## (total number of successes/nreps) calculates the probability that the prisoner finds his card. This probability is the function output. 
 Pone <- function(n,k,strategy,nreps) {
   # create an empty vector to store the outcome of each simulation as 1/0 = Success/ Failure to find his card
   success <- rep(0, nreps)
@@ -139,13 +141,11 @@ Pone <- function(n,k,strategy,nreps) {
 }
 
 
-
+## The 'Pall' function takes the inputs 'n', 'strategy' and 'nreps'
 ## 'Pall' is a function to find the probability of all the 2n prisoners finding their cards in a single simulation
 ## and all being able to escape. All prisoners must use the same strategy. The probability is calculated by finding
 ## the total number of all prisoner successes and dividing by the number of simulations run (nreps).
 ## The Function then returns this probability vector as the output.
-
-
 Pall <- function(n,strategy,nreps) {
   #create a vector to record the result of each simulation with default values of 1s
   num_success <- rep(1,nreps)
@@ -224,13 +224,7 @@ Pall(50,Strategy3,10000)
 ## marginal probabilities to produce a joint probability of (0.5)^(2n), which tends to 0 as n increases. 
 
 
-
-## dloop is a function which returns the probability distribution for the loop lengths occurring in a simulation 
-## It takes the parameters n (to create 2n boxes) and nreps (to analyse the results of nreps simulations).
-## The dloop function will return a 2n-vector, 'prob_vec_y', and prob_vec_y[i] shows the probability of loop length of i 
-## occurring at least once in a random shuffling of cards to boxes.
-
-
+##  The 'dloop' function takes in the inputs: 'n' and 'nreps' 
 ## 'dloop' is a function which returns the probability distribution vector for each loop length occuring in a simulation.
 ## It takes the parameters n (making 2n boxes) and nreps (to make nreps simulations). In each simulation all the boxes 
 ## are opened and the lengths of all loops are counted. All the loop lengths are then tabulated and divided by nreps. 
