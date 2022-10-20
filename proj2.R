@@ -122,10 +122,11 @@ Strategy2 <- function(n,k,cards_num) {
 
 ## Strategy 3:
 ## In this strategy the prisoner opens n boxes at random, without replacement (check !!)
+## The prisoner will open n different boxes
 
 ## Prisoner 'k' uses Strategy 3 to find their number amoungst '2n' boxes 'cards_num'
 Strategy3 <- function(n,k,cards_num){ 
-  cards_picked <- sample(cards_num,n) # Randomly select n boxes from cards_num to open
+  cards_picked <- sample(cards_num,n,replace=FALSE) # Randomly select n boxes from cards_num to open
   if (k %in% cards_num[cards_picked]){ # Check if prisoner number is in any of the boxes selected
     return(TRUE) 
     #cat("The prisoner found their card in box ", match(x,boxes[select_box])) # Uncomment this if running Strategy3 standalone for a success message
