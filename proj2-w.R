@@ -199,4 +199,6 @@ loop50 <- dloop(50,10000)
 1 - sum(loop50[51:100])
 
 # Visualize the probabilities
-hist(loop50)
+# hist(loop50)
+x_axis <- 1:length(max_looplen)
+plot(x_axis, max_looplen, xlab = "max loop length", ylab = "probability")
