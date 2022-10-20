@@ -171,7 +171,6 @@ dloop <- function(n,nreps) {
       cards_picked[1] <- cards_num[k]
       for (b in 2:(2*n)) {
         if (cards_picked[b-1] ==k) {
-          loop_len[i,k] <- loop_len[i,k]
           break #stop the loop if the loop lenth has been found
         } else {
           cards_picked[b] <- cards_num[cards_picked[b-1]]
