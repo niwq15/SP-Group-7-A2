@@ -309,6 +309,6 @@ cat("your probability vector for producing at least one loop of length i: \n", p
 ## all other loop lengths >n . If we take 1-sum(p(loop length >n)) we are left with the probability of no loops longer
 ## than n occuring in the simulation. In this case Strategy 1 is guaranteed success. 
 
-cat( "Probability of Strategy 1 succeeding: \n", 1 - sum(prob_vec[(n+1):(2*n)]), "\n this is also the probability of the maximum loop length being less than n")
+cat( "Probability of Strategy 1 succeeding: \n", 1 - sum(prob_vec[(n+1):(2*n)]), "\n this is also the probability of the maximum loop length being no more than n")
 
 
