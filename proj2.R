@@ -14,6 +14,13 @@
 
 # each of us should add more here. we can say what we have done, involving different versions of functions above
 
+# Wenqi created the final versions of the functions Strategy 1, Strategy 2, Pone ... 
+# ...done for old versions
+
+
+# Cameron added if statement to speed up the Pall function
+
+
 # Other Tasks: (correct your own)
 # Cameron - optimising stuff and array stuff
 # Wenqi - Q3 - Q6 stuff 
