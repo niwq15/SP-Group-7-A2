@@ -194,11 +194,12 @@ dloop <- function(n,nreps) {
 
 ## Show an example to use 'dloop' to estimate the probabilities for n = 50
 
-loop50 <- dloop(50,10000)
-# The probability of no loop length more than 50
-1 - sum(loop50[51:100])
+dist <- dloop(50, 10000)
+## The probability of no loop longer than 50 = 
+## 1 - the probability that there exists loop length larger than 50 = 
+## 1 - the sum of the probability that there exists loop length from 51 to 100
+1 - sum(dist[51:100])
 
-# Visualize the probabilities
-# hist(loop50)
-x_axis <- 1:length(max_looplen)
-plot(x_axis, max_looplen, xlab = "max loop length", ylab = "probability")
+x_axis <- 1:(2*n)
+#prints a plot for probailities of maximum loop lengths
+plot(1:(2*n), dist, xlab = "loop length", ylab = "probability")
