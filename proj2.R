@@ -312,7 +312,7 @@ x_axis <- 1:length(prob_vec)
 plot(x_axis, prob_vec, xlab = "Loop Length", ylab = "Probability ", main = "Probability Distribution for the Occurance \n of one or more Loop Lengths per Simulation", cex.main = 1)
 
 #output the probability distribution vector: 
-cat("your probability vector for producing at least one loop of length i: \n", prob_vec_y, "\n")
+cat("your probability vector for producing at least one loop of length i: \n", prob_vec, "\n")
 
 ## For loop lengths greater than n only one may occur at a time as the total loop lengths must sum to 2n. 
 ## Therefore P(loop length >n occurs at least once ) == P(loop length >n occurs once ) and is mutually exclusive with 
