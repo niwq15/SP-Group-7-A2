@@ -8,16 +8,17 @@
 #### Contributions
 
 # Functions we each made versions of:
-# Cameron - Strategy3, alternatives to each strategy using arrays, Pone, Pall, dloop
+# Cameron - Strategy1, Strategy2, Strategy3, Pone, Pall, dloop
 # Wenqi - Strategy1, Strategy2, Strategy3, Pone, Pall, dloop 
 # Fatima - Strategy2, Pone, Pall, dloop 
 
 # each of us should add more here. we can say what we have done, involving different versions of functions above
 
-# Cameron  wrote the used strategy 3 function and added an if statement to
-# speed up the Pall function. Some attempts were made to use arrays to record
-# the simulation information but this was found to be slower. Other versions of
-# Pone and Pall were also made but the final versions used were faster.
+# Cameron wrote the used strategy 3 function and added an if statement to speed
+# up the Pall function. Some attempts were made to use arrays to write more
+# efficient strategy functions but these were slower. Other versions of Pone and
+# Pall were also made but the final versions used were faster. The dloop
+# function written was not used as other members' dloops were better.
 
 # Wenqi created the final versions of the functions Strategy 1, Strategy 2, Pone, 
 # and the probability of no loop longer than 50 in a random reshuffling of cards to boxes
@@ -25,7 +26,7 @@
 
 
 # Other Tasks: (correct your own)
-# Cameron - 
+# Cameron - the readme file in the repository
 # Wenqi - Q3 - Q6 stuff 
 # Fatima - Q3 - Q6 stuff 
 
