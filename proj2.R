@@ -212,16 +212,37 @@ Pall(50,Strategy3,10000)
 #100 prisoners & strategy 3: prob success ~0% (smaller than precision) (n=50)
 
 
-# STILL TO DO Q4 - WILL DRAFT THEN INSERT TOMORROW 
+## while stategies 1 and 3 are distinc, strategy 2 shares aspects with both of them 
+## yet has distinct marginal and joint probabilities 
+
+## Strategy 3's results are as expected. The probability of finding his card in a box is 1/2n
+## therefore if he opens n boxes at random the probability of finding his card is n/2n i.e. 50%
+## For 2n prisoners simultaneously finding their cards in a simulation we multiply the independent 
+## marginal probabilities to produce a joint probability of (0.5)^(2n), which tends to 0 as n increases. 
+
+## Strategy 1 uses an algorithm to select cards. For a single prisoner the marginal probability of success 
+## is still 50%, and therefore does not improve on the random selection method of strategy 3. However, the 
+## joint probability of success is significantly higher than that of strategy 3 - demonstrating that there is 
+## something intelligent in the strategy's design. The reason for the higher probability of joint success is 
+## in the distribution of maximum loop lengths amoungst the boxes and cards. The cycle of box and card numbers
+## must eventually return the prisoner to open a box with his card number inside if he is allowed to open as
+## many boxes as he wants, as the numbers used are continuous (integers) and finite. The only limitation to the 
+## strategy is if the loop length is longer than n, the number of boxes the prisoner is allowed to open. Therefore,
+## the probability of success is dependent of the probability distribution of loop lengths amoungst the boxes. 
+## and the joint probability of success will be equal to the cumulative probability of the maximum loop length 
+## being less than n, which we have determined to be approximately 30%
 
 
-## Remarks
-# Strategy 1 and Strategy 3 have similar individual success probabilities of 50%, 
-# while Strategy 1 has much higher joint success probability of above 30%.
-# It is surprising that Strategy 3 has high individual success probability, but very low joint probability.
-# To summarise, Strategy 1 is a great choice for prisoners, for both themselves and others 
-# as it has high individual and joint success probabilities finding their numbers.
-
+## Strategy 2 has a lower marginal probability for success than the others, and a joint probability close to 0. 
+## Strategy 2 takes the worst aspects from both strategies 1 and 3. The fist box is selected at random, then the 
+## prisoner is stuck looping through boxes that may or may not have his card in it. The marginal probability is 
+## lower than 50% because in order to succeed not only must the prisoner select the correct loop with his card in it
+## at random, the loop he picks must also be shorter than n. Our results show that meeting both these conditions at 
+## once has a probability of 37-40% (varies with n). The joint probability tends to 0 for the same reason as strategy 3.
+## Each of the 2n prisoners must independently select the correct loop with their number at random, this has a 
+## probability (p) less than 1, therefore p^(2n) (the prob of all prisoners selecting the correct loop)
+## tends to 0 as n increases, this is without including the additional requirement of the loop length also being less
+## than n. 
 
 
 
