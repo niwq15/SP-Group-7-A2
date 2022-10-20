@@ -309,7 +309,7 @@ prob_vec <- dloop(n, 10000)
 ##plotting the probability distribution
 #create an x axis 
 x_axis <- 1:length(prob_vec_y)
-plot(x_axis, prob_vec_y, xlab = "Loop Length", ylab = "Probability ", main = "Probability Distribution for the Occurance \n of one or more Loop Lengths per Simulation", cex.main = 1)
+plot(x_axis, prob_vec, xlab = "Loop Length", ylab = "Probability ", main = "Probability Distribution for the Occurance \n of one or more Loop Lengths per Simulation", cex.main = 1)
 
 #output the probability distribution vector: 
 cat("your probability vector for producing at least one loop of length i: \n", prob_vec_y, "\n")
