@@ -8,7 +8,7 @@
 #### Contributions
 
 # Functions we each made versions of:
-# Cameron - Strategy3, Pone, 
+# Cameron - Strategy3, unused alternatives to each strategy using arrays, Pone, Pall optimization, unused dloop
 # Wenqi - Strategy1, Strategy2, Strategy3, Pone, Pall, dloop 
 # Fatima - Strategy2, Pone, Pall, dloop 
 
