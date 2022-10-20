@@ -51,20 +51,18 @@
 
 ## Each function expressing the different strategies for opening boxes to find cards will require the same 
 ## input parameters : n,k,cards_num. Where n parameterises the 2n number of boxes, prisoner and cards in our problem.
-## k is the prisoner's number and cards_num represents the random orders of cards placed in boxes. 
-## [As the boxes and cards comfiguration must remain the same between prisoner trials it cannot
-## be defined within the function and must be called on and externally defined.] ?
-## Uniform input parameters allows the implemented strategy to be variable in each simulation as each strategy 
-## function is interchangable. This is required by functions 'Pone' and 'Pall'
+## k is the prisoner's number and cards_num represents the random orders of cards placed in boxes.
+## Uniform input parameters allows the implemented strategy to be a variable in each simulation as each strategy 
+## function is interchangeable. This is required by functions 'Pone' and 'Pall'.
 
 
 ## Strategy 1:
-## Each prisoner with their number 'b' starts at the p-th box whose number on the card is k
-## If k is not equal to b, then the prisoner goes to box number k and opens it
-## The process will be repeated until they have either found the card with number p or opened n boxes without finding it
+## Each prisoner with their number 'k' starts at the k-th box which contains card b
+## If k is not equal to b, then the prisoner goes to box b and opens it
+## The process will be repeated until they have either found the card k or opened n boxes without finding it
 
-## Prisoner 'k' uses Strategy 1 to find their number amoungst '2n' boxes 'cards_num'
-## where 'cards_num' is a order of card numbers
+## Prisoner 'k' uses Strategy 1 to find their number amongst '2n' boxes 'cards_num'
+## where 'cards_num' is the card numbers indexed by the box numbers.
 Strategy1 <- function(n,k,cards_num) {
   #create an empty vector to store card numbers as they are read
   cards_picked <- rep(0, n) # the prisoner can read at most n cards
@@ -90,11 +88,11 @@ Strategy1 <- function(n,k,cards_num) {
 
 
 ## Strategy 2:
-## This strategy follows an identicle procedure to strategy 1, except that the starting box is randombly selected
+## This strategy follows an identical procedure to strategy 1, except that the starting box is randomly selected
 ## The prisoner uses the card number in each box to pick his next box to open.
-## The prisoner can open at most n boxes in order to find the card with their number on it
+## The prisoner can open at most n boxes in order to find the card with their number on it.
 
-## Prisoner 'k' uses Strategy 2 to find their number amoungst '2n' boxes 'cards_num'
+## Prisoner 'k' uses Strategy 2 to find their number amongst '2n' boxes 'cards_num'
 Strategy2 <- function(n,k,cards_num) {
   #create an empty vector to store card numbers that have been read
   cards_picked <- rep(0, n) # the prisoner can read at most n cards
@@ -115,17 +113,17 @@ Strategy2 <- function(n,k,cards_num) {
   } else {#if the final number is equal to his number
     return(TRUE)
   }
-} #The function reutrns TRUE/FALSE expressing that the prisoner has FOUND/FAILED TO FIND his card 
+} #The function returns TRUE/FALSE expressing that the prisoner has FOUND/FAILED TO FIND his card 
 
-## In Strategy 1 and Strategy 2, we use the idea that once prionsers find their numbers, they will stop
-## We use 'break' to save the running time
+## In Strategy 1 and Strategy 2, we use the idea that once prisoners find their numbers, they will stop
+## We use 'break' to save on running time
 ## In Strategy 3, we show another idea of selecting n card numbers and then checking whether k is inside
 
 ## Strategy 3:
-## In this strategy the prisoner opens n boxes at random, without replacement (check !!)
+## In this strategy the prisoner opens n boxes at random, without replacement
 ## The prisoner will open n different boxes
 
-## Prisoner 'k' uses Strategy 3 to find their number amoungst '2n' boxes 'cards_num'
+## Prisoner 'k' uses Strategy 3 to find their number amongst '2n' boxes 'cards_num'
 Strategy3 <- function(n,k,cards_num){ 
   cards_picked <- sample(cards_num,n,replace=FALSE) # Randomly select n boxes from cards_num to open
   any(k == cards_picked) # check whether the prisoner's number appears in the selected card_num
@@ -133,11 +131,11 @@ Strategy3 <- function(n,k,cards_num){
 
 
 
-## 'Pone' is a function which estimates the probability of a prisoner,k, successfully finding their card number (k)
-## within the n tries amoungst 2n boxes (cards_num) in nreps simulated trials, using any one of the available strategies encoded above
+## 'Pone' is a function which estimates the probability of a prisoner, k, successfully finding their card number (k)
+## within the n tries amongst 2n boxes (cards_num) in nreps simulated trials, using any one of the available strategies encoded above
 
 Pone <- function(n,k,strategy,nreps) {
-  # create an empty vector to store the outsome of each simulation as 1/0 = Success/ Failure to find his card
+  # create an empty vector to store the outcome of each simulation as 1/0 = Success/ Failure to find his card
   success <- rep(0, nreps)
   for (i in 1:nreps) {
     # simulate the random order of card numbers
@@ -196,7 +194,7 @@ Pone(50,50,Strategy3,10000)
 Pall(5,Strategy1,10000)
 Pall(50,Strategy1,10000)
 #10 prisoners & strategy 1: prob success ~35% (n=5)
-#100 prisoners & strategy 1: prob success ~30% (n=50)
+#100 prisoners & strategy 1: prob success ~31% (n=50)
 
 Pall(5,Strategy2,10000)
 Pall(50,Strategy2,10000)
@@ -205,7 +203,7 @@ Pall(50,Strategy2,10000)
 
 Pall(5,Strategy3,10000)
 Pall(50,Strategy3,10000)
-#10 prisoners & strategy 3: prob success ~1%  (n=5)
+#10 prisoners & strategy 3: prob success ~0.1%  (n=5)
 #100 prisoners & strategy 3: prob success ~0% (smaller than precision) (n=50)
 
 
@@ -217,12 +215,12 @@ Pall(50,Strategy3,10000)
 ## Strategy 2 has a lower marginal probability for success than the others, and a joint probability close to 0. 
 
 ## More explanations
-## For Strategy 1, consider the distribution of maximum loop lengths amoungst the boxes and cards. The cycle of box and card numbers 
+## For Strategy 1, consider the distribution of maximum loop lengths amongst the boxes and cards. The cycle of box and card numbers 
 ## must eventually return the prisoner to open a box with his card number inside if he is allowed to open as many boxes as he wants, 
 ## as the numbers used are continuous (integers) and finite. Thus, the high joint success probability can be calculated as the cumulative 
-## probability of the maximum loop length being less than n, which we have determined to be approximately 30%
+## probability of the maximum loop length being less than n, which we have determined to be approximately 31%
 
-## For Strategy 2,  the marginal probability is lower than 50% because the conditions for the prisoner's success are 1.the prisoner 
+## For Strategy 2, the marginal probability is lower than 50% because the conditions for the prisoner's success are 1.the prisoner 
 ## select the correct loop with his card in it at random; 2.the loop he picks must also be shorter than n. 
 ## Our results show that the probability is about 37-40% (varies with n). The joint probability tends to 0 for the similar reason as strategy 3.
 
@@ -299,7 +297,7 @@ prob_vec <- dloop(n, 10000)
 ##plotting the probability distribution
 #create an x axis 
 x_axis <- 1:length(prob_vec)
-plot(x_axis, prob_vec, xlab = "Loop Length", ylab = "Probability ", main = "Probability Distribution for the Occurance \n of one or more Loop Lengths per Simulation", cex.main = 1)
+plot(x_axis, prob_vec, xlab = "Loop Length", ylab = "Probability ", main = "Probability Distribution for the Occurrence \n of one or more Loop Lengths per Simulation", cex.main = 1)
 
 #output the probability distribution vector: 
 cat("your probability vector for producing at least one loop of length i: \n", prob_vec, "\n")
@@ -307,7 +305,7 @@ cat("your probability vector for producing at least one loop of length i: \n", p
 ## Only one loop length > n may exist at a time. In a simulation the lengths of all loops present must sum to 2n. 
 ## Therefore P(loop length >n occurs at least once ) == P(loop length >n occurs once ) and is mutually exclusive with 
 ## all other loop lengths >n . If we take 1-sum(p(loop length >n)) we are left with the probability of no loops longer
-## than n occuring in the simulation. In this case Strategy 1 is guaranteed success. 
+## than n occurring in the simulation. In this case Strategy 1 is guaranteed success. 
 
 cat( "Probability of Strategy 1 succeeding: \n", 1 - sum(prob_vec[(n+1):(2*n)]), "\n this is also the probability of the maximum loop length being no more than n")
 
